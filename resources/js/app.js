@@ -25,6 +25,7 @@ const vuetify = createVuetify({
         }
     },
 })
+import vSelect from 'vue-select';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -35,6 +36,7 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(vuetify)
+            .component('v-select', vSelect)
             .use(ZiggyVue, Ziggy)
             .mount(el);
     },
