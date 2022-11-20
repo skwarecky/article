@@ -61,7 +61,7 @@ export default {
 				</v-btn>
 
 				<v-spacer></v-spacer>
-				<DropdownLink :href="route('logout')" as="button" method="post" with="10rem;">
+				<DropdownLink :href="route('logout')" as="button" method="post" style="width: 6rem;">
 					LOG OUT
 				</DropdownLink>
 			</v-app-bar>

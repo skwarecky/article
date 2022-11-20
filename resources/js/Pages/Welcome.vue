@@ -121,4 +121,5 @@ defineProps({
 @tailwind components;
 @tailwind base;
 
+
 </style>
