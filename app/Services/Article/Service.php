@@ -2,12 +2,19 @@
 
 namespace App\Services\Article;
 
+use App\Http\Requests\ArticleStoreRequest;
+use App\Http\Requests\ArticleUpdateRequest;
 use App\Models\Article;
 
 class Service
 {
 
-	public function create(\Illuminate\Http\Request $request)
+	/**
+	 * Create new article
+	 * @param ArticleStoreRequest $request
+	 * @return mixed
+	 */
+	public function create(ArticleStoreRequest $request): mixed
 	{
 		$article = Article::create([
 			'user_id' => data_get(auth()->user(), 'id'),
@@ -20,7 +27,13 @@ class Service
 		return $article;
 	}
 
-	public function update(Article $article, \Illuminate\Http\Request $request)
+	/**
+	 * Update article
+	 * @param Article $article
+	 * @param ArticleUpdateRequest $request
+	 * @return bool
+	 */
+	public function update(Article $article, ArticleUpdateRequest $request): bool
 	{
 		$this->syncAssets($article, data_get($request, 'article_asset', []));
 
@@ -28,11 +41,14 @@ class Service
 			'title' => data_get($request, 'title'),
 			'content' => data_get($request, 'content'),
 		]);
-
-
 	}
 
-	private function syncAssets(Article $article, array $articleAssets)
+	/**
+	 * Synchronize asset with specyfic article
+	 * @param Article $article
+	 * @param array $articleAssets
+	 */
+	private function syncAssets(Article $article, array $articleAssets): void
 	{
 		$this->removeArticleAssets($article);
 
@@ -43,7 +59,11 @@ class Service
 		}
 	}
 
-	private function removeArticleAssets(Article $article)
+	/**
+	 * Remove all asigned assets
+	 * @param Article $article
+	 */
+	private function removeArticleAssets(Article $article): void
 	{
 		$article->articleAsset()->delete();
 	}

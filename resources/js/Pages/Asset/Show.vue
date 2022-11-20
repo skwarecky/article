@@ -20,7 +20,6 @@
 							<v-col cols="8">
 								<div>Title: {{ asset.title }}</div>
 								<div>Name: {{ asset.name }}</div>
-								<div>User: {{ asset.user?.name }}</div>
 							</v-col>
 							<v-col cols="4" align="center"
 								   justify="center">
