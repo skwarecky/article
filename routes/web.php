@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
 	Route::resource('article', ArticleController::class);
 	Route::resource('asset', AssetController::class)->except(['edit', 'update'])->middleware('editor');
 	Route::get('/asset/{asset}/download', [AssetController::class, 'download'])->name('asset.download');
+	Route::resource('user', UserController::class);
 });
 
 require __DIR__.'/auth.php';
