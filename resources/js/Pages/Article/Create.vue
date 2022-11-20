@@ -130,14 +130,12 @@ export default {
 		},
 		addSelectedAsset(asset){
 			this.selectedArticleAssets.push({id: null, asset: asset});
-			console.log(this.selectedArticleAssets);
 		},
 	},
 	watch:{
 		selectedAsset: function (selectedAsset){
 			if(!selectedAsset) return;
 
-			console.log(selectedAsset);
 			let searchedAsset;
 			for(const asset of this.assets.data){
 				if(asset.id == selectedAsset){

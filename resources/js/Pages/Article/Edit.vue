@@ -53,7 +53,7 @@
 
 									<v-row v-for="(articleAsset, index) in selectedArticleAssets">
 										<v-col cols="2">
-											<v-btn @click="remove(index)">
+											<v-btn @click="remove(index)" class="mt-1 ml-1">
 												DELETE
 											</v-btn>
 										</v-col>
@@ -126,14 +126,12 @@ export default {
 		},
 		addSelectedAsset(asset){
 			this.selectedArticleAssets.push({id: null, asset: asset});
-			console.log(this.selectedArticleAssets);
 		},
 	},
 	watch:{
 		selectedAsset: function (selectedAsset){
 			if(!selectedAsset) return;
 
-			console.log(selectedAsset);
 			let searchedAsset;
 			for(const asset of this.assets.data){
 				if(asset.id == selectedAsset){

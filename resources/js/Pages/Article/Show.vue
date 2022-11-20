@@ -18,6 +18,16 @@
 					<v-card-text>
 						<div>{{ article.title }}</div>
 						<p> {{ article.content }}</p>
+						<v-row class="mt-4">
+							<v-col cols="4" v-for="(asset, index) in selectedArticleAssets">
+								<form :action="route('asset.download', {id: asset?.asset?.id})" method="get" target="_blank">
+									<v-btn type="submit">Download</v-btn>
+								</form>
+								<p class="mt-3">
+									{{ asset?.asset?.title }}
+								</p>
+							</v-col>
+						</v-row>
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -40,9 +50,13 @@ export default {
 		Table
 	},
 	props: {
-		article: Object
+		article: Object,
+		articleAssets: Object
 	},
-	methods:{
+	data() {
+		return {
+			selectedArticleAssets: this.articleAssets?.data,
+		}
 	}
 }
 </script>

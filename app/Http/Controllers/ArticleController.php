@@ -47,7 +47,11 @@ class ArticleController extends Controller
 	 * @return \Inertia\Response
 	 */
 	public function show(Article $article){
-		return Inertia::render('Article/Show', ['article'=> $article]);
+		$articleAssets = ArticleAssetCollectionResource::collection(
+			$this->articleAssetRepository->getById(data_get($article, 'id'))
+		);
+
+		return Inertia::render('Article/Show', ['article'=> $article, 'articleAssets' => $articleAssets]);
 	}
 
 
@@ -83,7 +87,7 @@ class ArticleController extends Controller
 	 * @throws \Illuminate\Auth\Access\AuthorizationException
 	 */
 	public function edit(Article $article){
-		$this->authorize('own', $article);
+		$this->authorize('ownOrEditor', $article);
 
 		$assets = AssetSelectCollectionResource::collection(
 			$this->assetRepository->getAll()
@@ -110,7 +114,7 @@ class ArticleController extends Controller
 	 */
 	public function update(Article $article, ArticleUpdateRequest $request): RedirectResponse
 	{
-		$this->authorize('own', $article);
+		$this->authorize('ownOrEditor', $article);
 
 		if($this->service->update($article, $request)){
 			return redirect()->route('article.index')->with('message','Create article successfully');

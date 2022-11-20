@@ -10,6 +10,10 @@ class ArticlePolicy
 {
 
 	public function own(User $user, Article $article){
+		return $article->user->is($user);
+	}
+
+	public function ownOrEditor(User $user, Article $article){
 		if($user->is_author){
 			return $article->user->is($user);
 		}

@@ -10,8 +10,8 @@ class ArticleStoreRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'title' => 'required|string',
-			'content' => 'nullable|string|max:255',
+			'title' => 'required|string|max:255',
+			'content' => 'nullable|string',
 			'article_asset.*.asset' => 'required_unless:article_asset,array'
 		];
 	}
