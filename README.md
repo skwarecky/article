@@ -23,4 +23,8 @@ https://github.com/skwarecky/article.git
 ./vendor/bin/sail artisan migrate:fresh --seed
 ```
 
+### Test
+```bash
+./vendor/bin/sail artisan test
+```
 
