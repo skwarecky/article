@@ -44,13 +44,12 @@ class Article extends Model
 	{
 		parent::boot();
 
-		if(auth()->user()->is_editor){
-			return;
+		if(auth()->check() && auth()->user()->is_author){
+			static::addGlobalScope('article_author', function (Builder  $builder) {
+				$builder->where('articles.user_id', auth()->user()->id);
+			});
 		}
 
-		static::addGlobalScope('article_author', function (Builder  $builder) {
-			$builder->where('articles.user_id', auth()->user()->id);
-		});
 	}
 
 
