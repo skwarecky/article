@@ -41,8 +41,8 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-		'is_author' => 'bool',
-		'is_editor' => 'bool',
+		'is_author' => 'boolean',
+		'is_editor' => 'boolean',
         'email_verified_at' => 'datetime',
 		'created_at' => 'datetime:Y-m-d h:m:s',
 		'updated_at' => 'datetime:Y-m-d h:m:s',

@@ -25,9 +25,23 @@ class ArticleCollectionResource extends JsonResource
 
 	private function getActions()
 	{
+		if(auth()->user()->is_author && $this->user_id === auth()->user()->id){
+			return [
+				'show_link' => route('article.show', [ 'article' => data_get($this, 'id')]),
+				'edit_link' => route('article.edit', [ 'article' => data_get($this, 'id')]),
+				'delete_link' => route('article.destroy', [ 'article' => data_get($this, 'id')])
+			];
+		}
+
+		if(auth()->user()->is_editor){
+			return [
+				'show_link' => route('article.show', [ 'article' => data_get($this, 'id')]),
+				'edit_link' => route('article.edit', [ 'article' => data_get($this, 'id')]),
+			];
+		}
+
 		return [
-			'edit_link' => route('article.edit', [ 'article' => data_get($this, 'id')]),
-			'delete_link' => route('article.destroy', [ 'article' => data_get($this, 'id')])
+			'show_link' => route('article.show', [ 'article' => data_get($this, 'id')]),
 		];
 	}
 }
