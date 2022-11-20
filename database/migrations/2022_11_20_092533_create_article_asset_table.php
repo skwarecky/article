@@ -20,8 +20,10 @@ return new class extends Migration
         });
 
 		Schema::table('article_asset', static function (Blueprint $table): void {
-			$table->foreign('article_id')->references('id')->on('articles');
-			$table->foreign('asset_id')->references('id')->on('assets');
+			$table->foreign('article_id')->references('id')->on('articles')
+				->onDelete('cascade');
+			$table->foreign('asset_id')->references('id')->on('assets')
+				->onDelete('cascade');
 		});
     }
 
