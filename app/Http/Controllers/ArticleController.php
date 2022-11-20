@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleStoreRequest;
 use App\Http\Resources\ArticleAssetCollectionResource;
 use App\Http\Resources\ArticleCollectionResource;
 use App\Http\Resources\AssetSelectCollectionResource;
@@ -50,7 +51,7 @@ class ArticleController extends Controller
 		return Inertia::render('Article/Create', ['assets' => $assets]);
 	}
 
-	public function store(Request $request){
+	public function store(ArticleStoreRequest $request){
 		if($this->service->create($request)){
 			return redirect()->route('article.index')->with('success', 'Create article successfully');
 		}
@@ -75,7 +76,7 @@ class ArticleController extends Controller
 		]);
 	}
 
-	public function update(Article $article, Request $request){
+	public function update(Article $article, ArticleUpdateRequest $request){
 		$this->authorize('own', $article);
 
 		if($this->service->update($article, $request)){
@@ -84,6 +85,8 @@ class ArticleController extends Controller
 		return redirect()->route('article.index')->with('message','Error');
 
 	}
+
+
 	public function destroy(Article $article){
 		$this->authorize('own', $article);
 

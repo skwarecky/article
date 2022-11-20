@@ -54,6 +54,7 @@ export default {
 					Article
 				</v-btn>
 				<v-btn
+					v-if="$page.props.auth.user.is_editor"
 					:href="route('asset.index')"
 					class="d-flex align-center text-decoration-none"
 				>
@@ -61,7 +62,7 @@ export default {
 				</v-btn>
 
 				<v-spacer></v-spacer>
-				<DropdownLink :href="route('logout')" as="button" method="post" style="width: 6rem;">
+				<DropdownLink :href="route('logout')" as="button" method="post" style="width: 8rem;">
 					LOG OUT
 				</DropdownLink>
 			</v-app-bar>

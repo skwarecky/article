@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssetStoreRequest;
 use App\Http\Resources\AssetCollectionResource;
 use App\Models\Asset;
 use App\Repositories\AssetRepository;
@@ -37,7 +38,7 @@ class AssetController extends Controller
 		return Inertia::render('Asset/Create');
 	}
 
-	public function store(Request $request){
+	public function store(AssetStoreRequest $request){
 		if($this->service->create($request)){
 			return redirect()->route('asset.index')->with('success', 'Create asset successfully');
 		}
