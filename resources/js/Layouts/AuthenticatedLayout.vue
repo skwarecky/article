@@ -2,7 +2,8 @@
 import { ref } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Link } from '@inertiajs/inertia-vue3';
-import DropdownLink from '@/Components/DropdownLink.vue';
+import DropdownLink from '@/Components/DropdownLink.vue'
+import LinkButton from '@/Components/LinkButton.vue';
 
 const showingNavigationDropdown = ref(false);
 
@@ -10,6 +11,7 @@ export default {
 	components: {
 		ApplicationLogo,
 		Link,
+		LinkButton,
 		DropdownLink
 	},
 	props:{
@@ -47,19 +49,26 @@ export default {
 				</Link>
 				<v-spacer></v-spacer>
 
-				<v-btn
+				<LinkButton
 					:href="route('article.index')"
 					class="mr-1"
 				>
-					Article
-				</v-btn>
-				<v-btn
+					ARTICLE
+				</LinkButton>
+
+				<LinkButton
 					v-if="$page.props.auth.user.is_editor"
-					:href="route('asset.index')"
+					:link="route('asset.index')"
+					class="d-flex align-center  mr-1"
+				>
+					ASSET
+				</LinkButton>
+				<LinkButton
+					:href="route('user.index')"
 					class="d-flex align-center text-decoration-none"
 				>
-					Asset
-				</v-btn>
+					USER
+				</LinkButton>
 
 				<v-spacer></v-spacer>
 				<DropdownLink :href="route('logout')" as="button" method="post" style="width: 8rem;">

@@ -18,7 +18,9 @@
 </script>
 
 <template>
-	<v-btn  :href="link" variant="plain" color="color">
-		<slot/>
-	</v-btn>
+	<Link :href="link" class="btn btn-primary text-decoration-none" color="black">
+		<v-btn   variant="plain" color="color">
+			<slot/>
+		</v-btn>
+	</Link>
 </template>
