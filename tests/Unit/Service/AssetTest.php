@@ -2,8 +2,6 @@
 
 namespace Tests\Unit\Service;
 
-use App\Http\Requests\ArticleStoreRequest;
-use App\Http\Requests\AssetStoreRequest;
 use App\Models\Asset;
 use App\Models\User;
 use App\Services\Asset\Service;
@@ -11,8 +9,6 @@ use Database\Factories\AssetFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Str;
 use Tests\TestCase;
 
