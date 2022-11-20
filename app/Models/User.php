@@ -18,6 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+		'is_author',
+		'is_editor',
         'name',
         'email',
         'password',
@@ -39,6 +41,10 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+		'is_author' => 'bool',
+		'is_editor' => 'bool',
         'email_verified_at' => 'datetime',
+		'created_at' => 'datetime:Y-m-d h:m:s',
+		'updated_at' => 'datetime:Y-m-d h:m:s',
     ];
 }

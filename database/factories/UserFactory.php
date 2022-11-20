@@ -17,7 +17,11 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+		$isAuthors = fake()->boolean();
+
         return [
+			'is_author' => $isAuthors,
+			'is_editor' => !$isAuthors,
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
