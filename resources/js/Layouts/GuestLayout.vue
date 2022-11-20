@@ -16,3 +16,9 @@ import { Link } from '@inertiajs/inertia-vue3';
         </div>
     </div>
 </template>
+<style>
+@tailwind utilities;
+@tailwind components;
+@tailwind base;
+
+</style>

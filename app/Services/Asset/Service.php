@@ -13,19 +13,14 @@ class Service
 
 	public function create(\Illuminate\Http\Request $request)
 	{
-		$file = $request->file('file');
-		$filePath =  Str::random(40);
-		$fileExtension = $file->getClientOriginalExtension();
-		$path = self::FOLDER_PATH.$filePath.'.'.$fileExtension;
-
-		Storage::disk(self::PUBLIC)->put($path, file_get_contents($file));
+		$fileData = $this->storeFile($request->file('file'));
 
 		return Asset::create([
 			'user_id' => data_get(auth()->user(), 'id'),
 			'title' => data_get($request, 'title'),
-			'name' => $file->getClientOriginalName(),
-			'extension' => $file->getClientOriginalExtension(),
-			'path' => $path
+			'name' => data_get($fileData, 'fileName'),
+			'extension' => data_get($fileData, 'fileExtension'),
+			'path' => data_get($fileData, 'path'),
 		]);
 	}
 
@@ -44,5 +39,21 @@ class Service
 		Storage::delete($asset->path);
 
 		return $asset->delete();
+	}
+
+	private function storeFile($file): array
+	{
+		$fileName =  Str::random(40);
+		$fileExtension = $file->getClientOriginalExtension();
+		$path = self::FOLDER_PATH.$fileName.'.'.$fileExtension;
+
+		Storage::disk(self::PUBLIC)->put($path, file_get_contents($file));
+
+		return [
+			'fileName' => $fileName,
+			'fileExtension' => $fileExtension,
+			'path' => $path,
+		];
+
 	}
 }

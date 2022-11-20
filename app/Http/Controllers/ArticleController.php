@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleAssetCollectionResource;
 use App\Http\Resources\ArticleCollectionResource;
+use App\Http\Resources\AssetSelectCollectionResource;
 use App\Models\Article;
+use App\Repositories\ArticleAssetRepository;
 use App\Repositories\ArticleRepository;
+use App\Repositories\AssetRepository;
 use App\Services\Article\Service;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,7 +19,9 @@ class ArticleController extends Controller
 
 	public function __construct(
 		private Service $service,
-		private ArticleRepository $articleRepository
+		private ArticleRepository $articleRepository,
+		private AssetRepository $assetRepository,
+		private ArticleAssetRepository $articleAssetRepository
 
 	){
 	}
@@ -35,7 +41,13 @@ class ArticleController extends Controller
 
 
 	public function create(){
-		return Inertia::render('Article/Create');
+
+		$assets = AssetSelectCollectionResource::collection(
+			$this->assetRepository->getAll()
+		);
+
+
+		return Inertia::render('Article/Create', ['assets' => $assets]);
 	}
 
 	public function store(Request $request){
@@ -48,8 +60,18 @@ class ArticleController extends Controller
 	public function edit(Article $article){
 		$this->authorize('own', $article);
 
+		$assets = AssetSelectCollectionResource::collection(
+			$this->assetRepository->getAll()
+		);
+
+		$articleAssets = ArticleAssetCollectionResource::collection(
+			$this->articleAssetRepository->getById(data_get($article, 'id'))
+		);
+
 		return Inertia::render('Article/Edit',[
-			'article' => $article
+			'article' => $article,
+			'assets' => $assets,
+			'articleAssets' => $articleAssets
 		]);
 	}
 
@@ -57,9 +79,9 @@ class ArticleController extends Controller
 		$this->authorize('own', $article);
 
 		if($this->service->update($article, $request)){
-			return redirect()->route('article.index')->with('success', 'Create article successfully');
+			return redirect()->route('article.index')->with('message','Create article successfully');
 		}
-		return redirect()->route('article.index')->with('error', 'Error');
+		return redirect()->route('article.index')->with('message','Error');
 
 	}
 	public function destroy(Article $article){

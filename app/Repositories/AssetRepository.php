@@ -12,4 +12,8 @@ class AssetRepository{
 		return Asset::query()->paginate(self::LIMIT);
 	}
 
+	public function getAll(){
+		return Asset::query()->get();
+	}
+
 }
