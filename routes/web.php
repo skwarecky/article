@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 	Route::resource('article', ArticleController::class);
-	Route::resource('asset', AssetController::class)->except(['edit', 'update']);
+	Route::resource('asset', AssetController::class)->except(['edit', 'update'])->middleware('editor');
 	Route::get('/asset/{asset}/download', [AssetController::class, 'download'])->name('asset.download');
 });
 
