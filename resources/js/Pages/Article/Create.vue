@@ -16,6 +16,7 @@
 						</v-row>
 					</v-card-title>
 					<v-card-text>
+						<HandleRequestErrors :errors="errors"/>
 						<form @submit.prevent="submit">
 							<v-row>
 								<v-col cols="6">
@@ -83,7 +84,8 @@
 <script>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import LinkButton from '@/Components/LinkButton.vue';
-import Table from '@/Components/Table.vue';
+import HandleRequestErrors from '@/Components/HandleRequestErrors.vue';
+
 import {useForm} from "@inertiajs/inertia-vue3";
 
 export default {
@@ -91,10 +93,11 @@ export default {
 	components: {
 		AuthenticatedLayout,
 		LinkButton,
-		Table
+		HandleRequestErrors
 	},
 	props: {
-		assets: Object
+		assets: Object,
+		errors: Object,
 	},
 	data() {
 		return {

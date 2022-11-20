@@ -37,7 +37,7 @@ import LinkButton from '@/Components/LinkButton.vue';
 import Table from '@/Components/Table.vue';
 
 export default {
-	name: "Index.vue",
+	name: "Index",
 	components: {
 		AuthenticatedLayout,
 		LinkButton,
