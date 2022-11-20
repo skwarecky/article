@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 	Route::resource('article', ArticleController::class);
+	Route::resource('asset', AssetController::class)->except(['edit', 'update']);
+	Route::get('/asset/{asset}/download', [AssetController::class, 'download'])->name('asset.download');
 });
 
 require __DIR__.'/auth.php';

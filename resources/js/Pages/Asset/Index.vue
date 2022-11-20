@@ -8,10 +8,10 @@
 					<v-card-title>
 						<v-row>
 							<v-col cols="6">
-								Article
+								Asset
 							</v-col>
 							<v-col class="text-right" cols="6">
-								<LinkButton :link="route('article.create')">Create article</LinkButton>
+								<LinkButton :link="route('asset.create')">Create asset</LinkButton>
 
 							</v-col>
 
@@ -20,8 +20,7 @@
 					</v-card-title>
 
 					<v-card-text>
-						<Table :columns="columns" :rows="articles"></Table>
-
+						<Table :columns="columns" :rows="assets"></Table>
 					</v-card-text>
 
 				</v-card>
@@ -37,21 +36,22 @@ import LinkButton from '@/Components/LinkButton.vue';
 import Table from '@/Components/Table.vue';
 
 export default {
-	name: "Index.vue",
+	name: "Index",
 	components: {
 		AuthenticatedLayout,
 		LinkButton,
 		Table
 	},
 	props: {
-		articles: Object
+		assets: Object
 	},
 	data() {
 		return {
 			columns: [
 				{name: '', attribute: 'actions'},
 				{name: 'Title', attribute: 'title'},
-				{name: 'Content', attribute: 'content'},
+				{name: 'Name', attribute: 'name'},
+				{name: 'Extension', attribute: 'extension'},
 				{name: 'Created at', attribute: 'created_at'},
 			]
 		}

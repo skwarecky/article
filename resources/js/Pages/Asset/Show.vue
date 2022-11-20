@@ -8,22 +8,28 @@
 					<v-card-title>
 						<v-row>
 							<v-col cols="6">
-								Article
+								Asset
 							</v-col>
 							<v-col class="text-right" cols="6">
-								<LinkButton :link="route('article.create')">Create article</LinkButton>
-
+								<LinkButton :link="route('asset.index')">Back to list</LinkButton>
 							</v-col>
-
 						</v-row>
-
 					</v-card-title>
-
 					<v-card-text>
-						<Table :columns="columns" :rows="articles"></Table>
-
+						<v-row>
+							<v-col cols="8">
+								<div>Title: {{ asset.title }}</div>
+								<div>Name: {{ asset.name }}</div>
+								<div>User: {{ asset.user?.name }}</div>
+							</v-col>
+							<v-col cols="4" align="center"
+								   justify="center">
+								<form :action="route('asset.download', {id: this.asset.id})" method="get" target="_blank">
+									<v-btn type="submit">Download</v-btn>
+								</form>
+							</v-col>
+						</v-row>
 					</v-card-text>
-
 				</v-card>
 			</v-col>
 		</v-row>
@@ -35,26 +41,20 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import LinkButton from '@/Components/LinkButton.vue';
 import Table from '@/Components/Table.vue';
+import {useForm} from "@inertiajs/inertia-vue3";
 
 export default {
-	name: "Index.vue",
+	name: "Show",
 	components: {
 		AuthenticatedLayout,
-		LinkButton,
-		Table
+		LinkButton
 	},
 	props: {
-		articles: Object
+		asset: Object
 	},
 	data() {
-		return {
-			columns: [
-				{name: '', attribute: 'actions'},
-				{name: 'Title', attribute: 'title'},
-				{name: 'Content', attribute: 'content'},
-				{name: 'Created at', attribute: 'created_at'},
-			]
-		}
+	},
+	methods:{
 	}
 }
 </script>

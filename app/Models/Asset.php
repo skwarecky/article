@@ -35,4 +35,5 @@ class Asset extends Model
 		'created_at' => 'datetime:Y-m-d h:m:s',
 		'updated_at' => 'datetime:Y-m-d h:m:s',
 	];
+
 }
