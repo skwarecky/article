@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class AssetFactory extends Factory
 {
 
+	public const EXAMPLE_FILE_PATH = 'assets/53FSDIVBIJIAS.pdf';
 	/**
 	 * Name of model
 	 * @var string
@@ -29,7 +30,7 @@ class AssetFactory extends Factory
 			'title' => fake()->sentence(),
 			'name' => fake()->sentence(),
 			'extension' => fake()->sentence(),
-			'path' => fake()->url()
+			'path' => self::EXAMPLE_FILE_PATH
         ];
     }
 }
