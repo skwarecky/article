@@ -28,7 +28,7 @@ class ArticleTest extends TestCase
 		$this->actingAs($user);
         $response = $this->get('/asset');
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 
 	/**
