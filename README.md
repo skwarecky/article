@@ -31,12 +31,13 @@ docker run --rm \
 ./vendor/bin/sail artisan migrate:fresh --seed
 ```
 
+### 6. Storage
+```bash
+./vendor/bin/sail artisan storage:link
+```
+
 ### Test
 ```bash
 ./vendor/bin/sail artisan test
 ```
 
-### Storage
-```bash
-./vendor/bin/sail artisan storage:link
-```
