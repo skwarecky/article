@@ -36,3 +36,7 @@ docker run --rm \
 ./vendor/bin/sail artisan test
 ```
 
+### Storage
+```bash
+./vendor/bin/sail artisan storage:link
+```
