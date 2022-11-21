@@ -21,7 +21,7 @@ class Service
 			'is_editor' => data_get($request, 'is_editor'),
 			'name' => data_get($request, 'name'),
 			'email' => data_get($request, 'email'),
-			'password' => bcrypt(data_get($request, 'password')),
+			'password' => data_get($request, 'password')
 		]);
 
 		event(new Registered($user));

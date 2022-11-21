@@ -50,6 +50,15 @@ class User extends Authenticatable
     ];
 
 	/**
+	 * @param $password
+	 */
+	public function setPasswordAttribute($password): void
+	{
+
+		$this->attributes['password'] = bcrypt($password);
+	}
+
+	/**
 	 * Relation users.id = articles.user_id
 	 * @return HasMany
 	 */
