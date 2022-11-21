@@ -60,6 +60,8 @@ class ArticleController extends Controller
 	 * @return \Inertia\Response
 	 */
 	public function create(){
+		$this->authorize('create', auth()->user());
+
 		$assets = AssetSelectCollectionResource::collection(
 			$this->assetRepository->getAll()
 		);
@@ -73,6 +75,8 @@ class ArticleController extends Controller
 	 * @return RedirectResponse
 	 */
 	public function store(ArticleStoreRequest $request){
+		$this->authorize('create', auth()->user());
+
 		if($this->service->create($request)){
 			return redirect()->route('article.index')->with('success', 'Create article successfully');
 		}

@@ -9,7 +9,7 @@ class UserRepository{
 	public const LIMIT = 10;
 
 	public function paginated(){
-		return User::query()->paginate(self::LIMIT);
+		return User::query()->orderBy('created_at', 'DESC')->paginate(self::LIMIT);
 	}
 
 }

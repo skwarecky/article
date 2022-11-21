@@ -11,12 +11,9 @@
 								Article
 							</v-col>
 							<v-col class="text-right" cols="6">
-								<LinkButton :link="route('article.create')">Create article</LinkButton>
-
+								<LinkButton v-if="$page.props.auth.user.is_author" :link="route('article.create')">Create article</LinkButton>
 							</v-col>
-
 						</v-row>
-
 					</v-card-title>
 
 					<v-card-text>
