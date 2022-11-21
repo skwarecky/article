@@ -31,13 +31,15 @@
 								type="text"
 							></v-text-field>
 
-							<v-textarea
+							<v-text-field
 								v-model="form.email"
-								autocomplete="false"
+								autocomplete="off"
 								dense
 								label="Email"
 								outlined
-							></v-textarea>
+								required
+								type="text"
+							></v-text-field>
 
 							<v-text-field
 								v-model="form.password"
