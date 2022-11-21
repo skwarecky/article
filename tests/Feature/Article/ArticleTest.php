@@ -26,7 +26,7 @@ class ArticleTest extends TestCase
     {
 		$user = User::factory()->create();
 		$this->actingAs($user);
-        $response = $this->get('/asset');
+        $response = $this->get('/article');
 
 		$response->assertSuccessful();
     }
@@ -38,7 +38,7 @@ class ArticleTest extends TestCase
 	 */
 	public function testNotLoggedUserArticleList()
 	{
-		$response = $this->get('/asset');
+		$response = $this->get('/article');
 
 		$response->assertStatus(302);
 	}
