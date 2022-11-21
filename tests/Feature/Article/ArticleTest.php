@@ -46,7 +46,7 @@ class ArticleTest extends TestCase
 
 	public function testLoggedUserArticleCreateView()
 	{
-		$user = User::factory()->create();
+		$user = User::factory()->create(['is_author' => true, 'is_editor' => false]);
 		$this->actingAs($user);
 		$response = $this->get('/article/create');
 
@@ -62,7 +62,7 @@ class ArticleTest extends TestCase
 
 	public function testLoggedUserArticleStore()
 	{
-		$user = User::factory()->create();
+		$user = User::factory()->create(['is_author' => true, 'is_editor' => false]);
 		$this->actingAs($user);
 		$response = $this->post('/article', [
 			'title' => fake()->sentence(),
